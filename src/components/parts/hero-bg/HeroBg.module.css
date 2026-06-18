@@ -1,10 +1,14 @@
 .background {
     position: absolute;
-    inset: 12px;
+    inset: 8px;
     border-radius: 20px;
     overflow: hidden;
     z-index: -1;
-    box-shadow: 0px 4px 16px oklch(var(--foreground-oklch) / 0.3);
+    box-shadow: 0px 4px 16px oklch(var(--foreground-oklch) / 0.2);
+
+    @media (--sm) {
+        inset: 12px;
+    }
 
     .fade {
         position: absolute;

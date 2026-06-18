@@ -8,9 +8,6 @@ function HeroError() {
     const cityError = useSearchCityError((store) => store.error);
     const dailyError = useDailyError((store) => store.error);
 
-    // Добавь этот лог и посмотри в консоль браузера
-    console.log("Текущие ошибки в сторах:", { weatherError, cityError, dailyError });
-
     if (!weatherError && !cityError && !dailyError) return null;
 
     return (
