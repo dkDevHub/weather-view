@@ -8,7 +8,7 @@ function HeroCard() {
     return (
         <Card className={cl.info}>
             <div className="flex justify-between items-center">
-                <span className="text-xl font-semibold">Enter you city</span>
+                <span className="text-xl font-semibold">Enter your city</span>
                 <SaveBtn/>
             </div>
             <CityInput />

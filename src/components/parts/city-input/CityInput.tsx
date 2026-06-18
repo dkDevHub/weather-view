@@ -4,7 +4,7 @@ import Combobox from "@/components/atomic/combobox/Combobox";
 import { useService } from "@/hooks/useService";
 import { OpenWeatherService } from "@/services/openWeather";
 import { useDebounceCallback } from "@/hooks/useDebounceCallback";
-import { isCityComboboxItem } from "@/lib/utils";
+import { getUniqueCities, isCityComboboxItem } from "@/lib/utils";
 import { useWeather } from "@/store/useWeather";
 import { useEffect, useState } from "react";
 import { useSearchCityError } from "@/store/useSearchCityError";
@@ -23,6 +23,8 @@ function CityInput() {
     const selectedItem = useWeather(store => store.selectedItem)
     const [inputValue, setInputValue] = useState(selectedItem?.label);
 
+    const uniqueCities = getUniqueCities(cities);
+
     const handleInputChange = (value: string) => {
         setInputValue(value);
         if (value === undefined || value === null || value.length < 2) return;
@@ -40,8 +42,8 @@ function CityInput() {
     return (
         <Combobox
             inputValue={inputValue}
-            values={cities}
-            filteredItems={cities || []}
+            values={uniqueCities}
+            filteredItems={uniqueCities || []}
             onInputValueChange={handleInputChange}
             onValueChange={handleValueChange}
             placeholder="City name"

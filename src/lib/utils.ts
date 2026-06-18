@@ -43,10 +43,17 @@ export function countryCodeToEmoji(countryCode: string): string {
 }
 
 export const formatCities = (cities: GeocodingLocation[]) => {
-    return cities.map((c) => ({
-        label: `${countryCodeToEmoji(c.country)}  ${c.name}, ${c.state || ""}`,
-        value: { lat: c.lat, lon: c.lon },
-    }));
+    return cities.map((c) => {
+        const locationParts = [c.name];
+        if (c.state) locationParts.push(c.state);
+        
+        const locationString = locationParts.join(", ");
+
+        return {
+            label: `${countryCodeToEmoji(c.country)}  ${locationString}`,
+            value: { lat: c.lat, lon: c.lon },
+        };
+    });
 };
 
 export function isCityComboboxItem(item: unknown): item is CityComboboxItem {
@@ -98,4 +105,21 @@ export function formatDateString(dateStr: string): string {
     const [year, month, day] = dateStr.split("-");
 
     return `${day}.${month}`;
+}
+
+export function getUniqueCities(arr: unknown[] | null | undefined): CityComboboxItem[] {
+    if (!arr || !Array.isArray(arr)) return [];
+
+    const seen = new Set<string>();
+
+    return arr.filter((item): item is CityComboboxItem => {
+        if (!isCityComboboxItem(item)) return false;
+
+        const uniqueKey = `${item.label}-${item.value.lat}-${item.value.lon}`;
+
+        if (seen.has(uniqueKey)) return false;
+
+        seen.add(uniqueKey);
+        return true;
+    });
 }
