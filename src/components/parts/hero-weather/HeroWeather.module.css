@@ -1,0 +1,22 @@
+.img_block {
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+
+    .img {
+        box-shadow: var(--shadow-lg);
+        background-color: oklch(var(--background-oklch) / .5);
+        width: 340px;
+        height: 200px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(to top, black, transparent 50%);
+        opacity: .5;
+    }
+}

@@ -1,0 +1,11 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: oklch(var(--background-oklch) / .6);
+    backdrop-filter: blur(4px);
+    padding: 16px;
+    border: 1px solid oklch(var(--foreground-oklch) / .3);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+}

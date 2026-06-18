@@ -1,0 +1,61 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 16px;
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+::selection {
+    background-color: var(--foreground);
+    color: var(--background);
+}
+
+strong {
+    line-height: calc(1.25 / 0.875);
+}   
+
+img {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    scroll-margin: 120px;
+}
+
+h1 {
+    font-size: 2.25rem; /* 36px */
+    line-height: calc(2.5 / 2.25);
+}
+
+@media (width >= 1024px) {
+    h1 {
+        font-size: 3rem; /* 48px */
+        line-height: 1.05;
+    }
+}
+
+h2 {
+    font-size: 1.875rem; /* 30px */
+    line-height: calc(2.25 / 1.875);
+}
+
+h3 {
+    font-size: 1.5rem; /* 24px */
+    line-height: calc(2 / 1.5);
+}
+
+h4 {
+    font-size: 1.25rem; /* 20px */
+    line-height: calc(1.8 / 1.25);
+}

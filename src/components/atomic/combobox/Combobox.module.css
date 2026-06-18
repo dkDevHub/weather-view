@@ -1,0 +1,250 @@
+.input_group {
+    position: relative;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.input_icon .input {
+    padding-left: 40px;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    padding-right: 36px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    height: 40px;
+    background-color: var(--card);
+    transition: border-color .2s, outline .2s;
+    cursor: pointer;
+    font-size: 14px;
+    outline: 2px solid transparent;
+    outline-offset: -1px;
+
+    &:focus {
+        outline: 2px solid oklch(var(--foreground-oklch) / .75);
+        outline-offset: -1px;
+    }
+
+    &[data-disabled] {
+        cursor: not-allowed;
+        background-color: oklch(var(--muted-foreground-oklch) / .2);
+    }
+}
+
+@keyframes loading {
+    from {
+        scale: 0.7;
+        rotate: 0deg;
+        opacity: 0.5;
+    }
+
+    50% {
+        scale: 1;
+        opacity: 1;
+    }
+
+    to {
+        scale: 0.7;
+        rotate: 360deg;
+        opacity: 0.5;
+    }
+}
+
+.icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    
+
+    & > svg {
+        opacity: 0.4;
+        transition: opacity .2s;
+    }
+
+    &::after {
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 1 1-6.219-8.56'/%3E%3C/svg%3E");
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        opacity: 0;
+        transform: scale(0.2);
+        transition: opacity .2s, transform .4s;
+    }
+}
+
+.loading .icon {
+    & > svg {
+        opacity: 0;
+        transition: opacity .2s;
+    }
+
+    &::after {
+        opacity: 1;
+        transform: scale(1);
+        left: -2px;
+        animation: loading ease-in infinite 0.6s;
+    }
+}
+
+.buttons {
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    height: 2.5rem;
+    right: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    color: oklch(var(--foreground-oklch) / .75);
+    padding: 0;
+}
+
+.trigger,
+.clear {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 2.5rem;
+    color: oklch(var(--foreground-oklch) / .75);
+    border: none;
+    padding: 0;
+    border-radius: 0.25rem;
+    background: none;
+}
+
+.buttons:has(.clear) .trigger {
+    display: none;
+}
+
+.positioner {
+    outline: 0;
+}
+
+.popup {
+    z-index: 10;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 0.375rem;
+    background-color: canvas;
+    color: var(--foreground);
+    width: var(--anchor-width);
+    max-height: 260px;
+    max-width: var(--available-width);
+    transition:
+        opacity 0.1s,
+        transform 0.1s;
+    transform-origin: var(--transform-origin);
+    outline: 2px solid var(--border);
+    box-shadow: var(--shadow-md);
+    background-color: oklch(var(--background-oklch) / .7);
+    backdrop-filter: blur(6px);
+
+    &[data-starting-style],
+    &[data-ending-style] {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.list {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-padding-block: 8px;
+    max-height: min(260px, var(--available-height));
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &[data-empty] {
+        padding: 0;
+    }
+}
+
+.list > :not(:last-child) {
+    border-bottom: 1px solid var(--border);
+}
+
+.item {
+    outline: 0;
+    cursor: default;
+    user-select: none;
+    padding: 8px 12px;
+    align-items: center;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color, color;
+    transition-duration: 0.1s;
+
+    &[data-highlighted] {        
+        background-color: var(--card);
+    }
+}
+
+.input_group:not(:focus) .input:hover:not(:focus):not([data-disabled]) {
+    border-color: oklch(var(--foreground-oklch) / .75);
+}
+
+.input:focus {
+    outline: 2px solid oklch(var(--foreground-oklch) / .75);  
+}
+
+.input_group:has(.input:focus) .icon {
+    opacity: 1;
+}
+
+.input_group:has(.input:not(:placeholder-shown)):not(.ignore_filled_state) .icon {
+    opacity: 1;
+}
+
+.input_group:not(.ignore_filled_state) .input:not(:placeholder-shown) {
+    border-color: oklch(var(--foreground-oklch) / .3);
+}
+
+.input_group .input:hover:focus {
+    border-color: transparent;
+}
+
+.input::placeholder {
+    stroke: oklch(var(--muted-foreground-oklch) / .75);
+    font-size: 14px;
+}
+
+.item_text {
+    grid-column-start: 2;
+}
+
+.empty {
+    font-size: 14px;
+    color: var(--foreground);
+    padding: 12px 20px;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active{
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px  var(--background);
+}

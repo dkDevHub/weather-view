@@ -1,0 +1,8 @@
+.info {
+    width: 100%;
+    max-width: 340px;
+
+    @media (--md) {
+        max-width: unset;
+    }
+}

@@ -1,0 +1,84 @@
+.input_wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.icon {
+    position: absolute;
+    left: 16px;
+    pointer-events: none;
+}
+
+.icon svg {
+    color: var(--muted-foreground);
+    opacity: 0.4;
+    transition: opacity .2s;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid oklch(var(--foreground-oklch) / .3);
+    border-radius: 10px;
+    height: 40px;
+    background-color: var(--card);
+    transition: border-color .2s, outline .2s;
+    cursor: pointer;
+    font-size: 14px;
+    outline: 2px solid transparent;
+    outline-offset: -1px;
+}
+
+.input_icon {
+    padding-left: 40px;
+}
+
+.input_wrapper:not(:focus) .input:hover:not(:focus) {
+    border-color: oklch(var(--foreground-oklch) / .4);
+}
+
+.input:focus {
+    outline: 2px solid oklch(var(--foreground-oklch) / .4);
+}
+
+.input_wrapper:has(.input:focus) .icon svg {
+    opacity: 1;
+}
+
+.input_wrapper:has(.input:not(:placeholder-shown)):not(.ignore_filled_state) .icon svg {
+    opacity: 1;
+}
+
+.input_wrapper:not(.ignore_filled_state) .input:not(:placeholder-shown) {
+    border-color: oklch(var(--foreground-oklch) / .3);
+}
+
+.input_wrapper .input:hover:focus {
+    border-color: transparent;
+}
+
+.input::placeholder {
+    stroke: oklch(var(--muted-foreground-oklch) / .6);
+    font-size: 14px;
+}
+
+.input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active{
+    box-shadow: 0 0 0 1000px var(--card) inset !important;
+    -webkit-text-fill-color: var(--foreground) !important;
+    transition: background-color 5000000s ease-in-out 0s, border-color .2s, outline .2s;
+}

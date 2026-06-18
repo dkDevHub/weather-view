@@ -1,0 +1,9 @@
+.info {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}

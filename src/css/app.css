@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "./custom-media.css";
+@import "./theme.css";
+@import "./settings.css";
+@import "./components.css";
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+}
