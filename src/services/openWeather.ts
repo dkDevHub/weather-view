@@ -5,7 +5,7 @@ import { CityComboboxItem } from "@/types/types";
 
 abstract class OpenWeatherService {
     static async searchCity(searchQuery: string): Promise<ApiResult<CityComboboxItem[]>> {
-        const res = await apiFetch<GeocodingLocation[]>(`/search?query=${searchQuery}`);
+        const res = await apiFetch<GeocodingLocation[]>(`/search?query=${searchQuery}`, { cache: "no-store" });
 
         if (res.data) {
             const formatted = formatCities(res.data);
