@@ -46,7 +46,7 @@ export const formatCities = (cities: GeocodingLocation[]) => {
     return cities.map((c) => {
         const locationParts = [c.name];
         if (c.state) locationParts.push(c.state);
-        
+
         const locationString = locationParts.join(", ");
 
         return {
@@ -115,7 +115,7 @@ export function getUniqueCities(arr: unknown[] | null | undefined): CityCombobox
     return arr.filter((item): item is CityComboboxItem => {
         if (!isCityComboboxItem(item)) return false;
 
-        const uniqueKey = `${item.label}-${item.value.lat}-${item.value.lon}`;
+        const uniqueKey = item.label;
 
         if (seen.has(uniqueKey)) return false;
 

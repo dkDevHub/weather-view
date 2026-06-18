@@ -26,7 +26,6 @@ export async function GET(req: NextRequest) {
 
         const response = await fetchWithTimeout(url, {
             method: "GET",
-            cache: "no-store"
         });
 
         const data: GeocodingLocation[] = await response.json();
