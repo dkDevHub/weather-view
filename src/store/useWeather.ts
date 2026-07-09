@@ -23,12 +23,13 @@ const initialItem = {
         lon: 25.320078,
     },
 };
-const { lat, lon } = initialItem.value;
-const initialWeather = await OpenWeatherService.getWeather(lat, lon);
+
+//const { lat, lon } = initialItem.value;
+//const initialWeather = await OpenWeatherService.getWeather(lat, lon);
 
 export const useWeather = create<Store>((set) => ({
-    weather: initialWeather.data || null,
-    error: initialWeather.error,
+    weather: null,
+    error: null,
     isLoading: false,
     selectedItem: initialItem,
     setWeather: (weather) => set({ weather }),

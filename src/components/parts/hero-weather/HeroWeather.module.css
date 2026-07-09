@@ -10,6 +10,8 @@
         background-color: oklch(var(--background-oklch) / .5);
         width: 340px;
         height: 200px;
+        transition: all .5s ease-in;
+        background-position: top center;
     }
 
     &::before {

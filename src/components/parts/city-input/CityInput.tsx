@@ -38,6 +38,8 @@ function CityInput() {
 
     useEffect(() => setSearchCityError(error), [error, setSearchCityError]);
     useEffect(() => setInputValue(selectedItem?.label), [selectedItem]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {if (selectedItem) fetchWeatherByCoords(selectedItem)}, []);
 
     return (
         <Combobox

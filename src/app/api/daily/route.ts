@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
 
         const res = await fetchWithTimeout(url, {
             method: "GET",
+            next: { revalidate: 3600 },
         });
 
         if (!res.ok) {

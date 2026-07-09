@@ -16,11 +16,11 @@ abstract class OpenWeatherService {
     }
 
     static async getWeather(lat: number, lon: number) {
-        return apiFetch<WeatherResponse>(`/weather?lat=${lat}&lon=${lon}`, { cache: "no-store" });
+        return apiFetch<WeatherResponse>(`/weather?lat=${lat}&lon=${lon}`, { next: { revalidate: 3600 } });
     }
 
     static async getDaily(lat: number, lon: number) {
-        return apiFetch<OpenMeteoResponse>(`/daily?lat=${lat}&lon=${lon}`);
+        return apiFetch<OpenMeteoResponse>(`/daily?lat=${lat}&lon=${lon}`, { next: { revalidate: 3600 }});
     }
 }
 

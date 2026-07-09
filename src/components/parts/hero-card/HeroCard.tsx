@@ -1,8 +1,8 @@
 import Card from "@/components/atomic/card/Card";
 import CityInput from "../city-input/CityInput";
 import cl from "./HeroCard.module.css"
-import HeroError from "../hero-error/HeroError";
 import SaveBtn from "../save-btn/SaveBtn";
+import HeroErrorLoader from "../hero-error/HeroErrorLoader";
 
 function HeroCard() {
     return (
@@ -12,7 +12,7 @@ function HeroCard() {
                 <SaveBtn/>
             </div>
             <CityInput />
-            <HeroError />
+            <HeroErrorLoader />
         </Card>
     );
 };

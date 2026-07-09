@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
 
         const weatherResponse = await fetchWithTimeout(weatherUrl, {
             method: "GET",
-            cache: "no-store"
+            next: { revalidate: 3600 },
         });
 
         if (!weatherResponse.ok) {

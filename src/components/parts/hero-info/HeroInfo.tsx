@@ -16,7 +16,7 @@ function HeroInfo() {
     if (!weather || loadingClass === "loading") {
         return (
             <div className={cn(cl.info, "opacity-50")}>
-                <Skeleton className="w-32 h-8 rounded-full" />
+                <Skeleton className="w-40 h-10 rounded-full" />
                 <div className="flex flex-col items-end">
                     <Skeleton className="w-18 h-4 rounded-full mb-1" />
                     <Skeleton className="w-12 h-6 rounded-full" />
