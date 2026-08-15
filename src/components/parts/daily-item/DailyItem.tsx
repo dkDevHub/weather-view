@@ -27,11 +27,11 @@ function DailyItem({ data, isLoading, index }: Props) {
         <div className={className}>
             <Image width={50} height={50} src={getOpenWeatherIconUrl(data.daily.weather_code[index])} alt="" />
             <span className="text-sm font-medium">
-                {index == 0 ? "Today" : formatDateString(data.daily.time[index])}
-            </span>
-            <span className="text-xs text-foreground/80 font-medium">
                 {Math.round(data.daily.temperature_2m_min[index])}° / {Math.round(data.daily.temperature_2m_max[index])}
                 °
+            </span>
+            <span className="text-xs text-foreground/80 font-medium">
+                {index == 0 ? "Today" : formatDateString(data.daily.time[index])}
             </span>
         </div>
     );
